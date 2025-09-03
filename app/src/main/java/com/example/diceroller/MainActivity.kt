@@ -40,6 +40,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
     var result by remember { mutableIntStateOf(1) }
+    //choix de l'image selon le random
     val imageResource = when(result){
         1 ->R.drawable.dice_1
         2 ->R.drawable.dice_3
@@ -57,12 +58,15 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
             painter = painterResource(imageResource),
             contentDescription = result.toString()
         )
+
+        // espace entre l'image et le bouton
+        Spacer(modifier = Modifier.height(16.dp))
+
         //le bouton interactif
         Button(onClick = {result = (1..6).random()}){
             Text(stringResource(R.string.roll))
         }
-        // espace entre l'image et le bouton
-        Spacer(modifier = Modifier.height(16.dp))
+
 
     }
 }
